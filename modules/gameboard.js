@@ -83,9 +83,8 @@ export class Game {
             })
         })
 
-        let i = 0;
         let winnerName;
-        for (; i < 9; i++) {
+        for (let i = 0; i < 9; i++) {
             this.currPlayer = this.currPlayer === this.p1 ? this.p2 : this.p1;
             await waitForClick();
 
