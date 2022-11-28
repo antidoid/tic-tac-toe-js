@@ -37,4 +37,7 @@ const beginGame = async () => {
 }
 
 startBtn.addEventListener("click", beginGame);
-
+inpP2.addEventListener("keyup", evt => {
+    if (evt.key === "Enter")
+        startBtn.click();
+})
