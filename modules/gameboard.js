@@ -49,27 +49,38 @@ export default class Game {
         for (let i = 0; i < 3; i++) {
             if ((this.gameboard[i][0] === this.gameboard[i][1]) && 
                 (this.gameboard[i][1] === this.gameboard[i][2]) && 
-                (this.gameboard[i][0] === "X" ||this.gameboard[i][0] === "O")
+                (
+                this.gameboard[i][0] === this.p1.symbol || 
+                this.gameboard[i][0] === this.p2.symbol
+                )
             ) return this.gameboard[i][0];
 
             if ((this.gameboard[0][i] === this.gameboard[1][i]) &&
                 (this.gameboard[1][i] === this.gameboard[2][i]) &&
-                (this.gameboard[0][i] === "X" || this.gameboard[0][i] === "O")
+                (
+                this.gameboard[0][i] === this.p1.symbol || 
+                this.gameboard[0][i] === this.p2.symbol
+                )
             ) return this.gameboard[0][i];
         }
 
         if ((this.gameboard[0][0] === this.gameboard[1][1]) && 
             (this.gameboard[1][1] === this.gameboard[2][2]) &&
-            (this.gameboard[0][0] === "X" || this.gameboard[0][0] === "O")
+            (
+            this.gameboard[0][0] === this.p1.symbol || 
+            this.gameboard[0][0] === this.p2.symbol
+            )
         ) return this.gameboard[0][0];
         
         if ((this.gameboard[2][0] === this.gameboard[1][1]) && 
             (this.gameboard[1][1] === this.gameboard[0][2]) &&
-            (this.gameboard[2][0] === "X" || this.gameboard[2][0] === "O")
+            (
+            this.gameboard[2][0] === this.p1.symbol || 
+            this.gameboard[2][0] === this.p2.symbol
+            )
         ) return this.gameboard[2][0];
 
         return null;
-
     }
 
     async play() {

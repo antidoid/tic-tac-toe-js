@@ -1,8 +1,5 @@
+import Player from "./modules/player.js"
 import Game from "./modules/gameboard.js"
-
-const Player = (firstName, symbol) => {
-    return {firstName, symbol}
-}
 
 // 1. Take inputs from a form 
 const inpP1 = document.getElementById("p1"); 
@@ -11,8 +8,8 @@ const inpP2 = document.getElementById("p2");
 const startBtn = document.querySelector("button");
 const beginGame = async () => {
     // 2. Remove the form with button and display the gameboard
-    const player1 = Player(inpP1.value || "Player X", "X");
-    const player2 = Player(inpP2.value || "Player O", "O");
+    const player1 = Player(inpP1.value || "Player X", "✘");
+    const player2 = Player(inpP2.value || "Player O", "𝓞");
     const game = new Game(player1, player2);
 
     const gameboard = document.querySelector(".gameboard");
