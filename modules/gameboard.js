@@ -1,4 +1,4 @@
-export class Game {
+export default class Game {
     constructor(player1, player2) {
         this.gameboard = [
                 [null, null, null],

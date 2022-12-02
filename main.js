@@ -1,10 +1,9 @@
-import { Game } from "./modules/gameboard.js"
+import Game from "./modules/gameboard.js"
 
 const Player = (firstName, symbol) => {
     return {firstName, symbol}
 }
 
-// TODO: 
 // 1. Take inputs from a form 
 const inpP1 = document.getElementById("p1"); 
 const inpP2 = document.getElementById("p2");
