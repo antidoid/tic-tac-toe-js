@@ -16,10 +16,8 @@ form {
 }
 
 form input {
-  display: block;
-  width: inherit;
-  height: 75px;
   font-size: 3rem;
+  line-height: 1.8;
   margin-bottom: 10px;
   margin-left: 40px;
   background: transparent;
@@ -144,5 +142,9 @@ button:hover {
 
     .gameboard {
         width: 95%;
+    }
+
+    form input {
+        font-size: 2.5rem;
     }
 }
