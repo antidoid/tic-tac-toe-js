@@ -1,3 +1,8 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   background-color: #223b3f;
 }
@@ -142,6 +147,11 @@ button:hover {
 
     .gameboard {
         width: 95%;
+        height: 35vh;
+    }
+    
+    p {
+        font-size: 2rem;
     }
 
     form input {
