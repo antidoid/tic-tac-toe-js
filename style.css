@@ -136,3 +136,13 @@ button:hover {
   background: #ff7d00;
   color: #FBFBFF;
 }
+
+@media only screen and (max-width: 600px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    .gameboard {
+        width: 95%;
+    }
+}
