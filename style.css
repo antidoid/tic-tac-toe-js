@@ -1,7 +1,7 @@
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
+/* html, body { */
+/*   max-width: 100%; */
+/*   overflow-x: hidden; */
+/* } */
 
 body {
   background-color: #223b3f;
@@ -9,6 +9,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }
 
 h1 {
@@ -20,6 +21,7 @@ h1 {
 
 form {
   margin: 10vh auto;
+  width: 400px;
 }
 
 form input {
@@ -31,12 +33,12 @@ form input {
   border: none;
   outline: none;
   color: #FBFBFF;
+  width: 90%;
 }
 
 .gameboard {
   width: 400px;
   height: 50vh;
-  /* margin: 5vh auto 1vh auto; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -135,6 +137,10 @@ p {
   visibility: hidden;
 }
 
+.remove {
+  display: none;
+}
+
 button:hover {
   background: #ff7d00;
   color: #FBFBFF;
@@ -145,8 +151,11 @@ button:hover {
         font-size: 3rem;
     }
 
-    .gameboard {
+    .gameboard, form {
         width: 95%;
+    }
+
+    .gameboard {
         height: 35vh;
     }
     

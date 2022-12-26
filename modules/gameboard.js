@@ -12,6 +12,7 @@ export default class Game {
     }
 
     render() {
+        document.querySelector('form').classList.add("remove");
         this.gameboard.forEach((row, i) => {
             row.forEach((_, j) => {
                 const scoreDisplay = document.createElement("div");

@@ -8,17 +8,20 @@ const inpP2 = document.getElementById("p2");
 const startBtn = document.querySelector("button");
 const p = document.createElement("p");
 
+const gameboard = document.querySelector(".gameboard");
+gameboard.classList.add("remove");
+
 const beginGame = async () => {
     // 2. Remove the form with button and display the gameboard
     const player1 = Player(inpP1.value || "Player X", "✘");
     const player2 = Player(inpP2.value || "Player O", "𝓞");
     const game = new Game(player1, player2);
 
-    const gameboard = document.querySelector(".gameboard");
     startBtn.classList.add("hide");
     p.classList.add("hide")
     gameboard.replaceChildren();
     game.render();
+    gameboard.classList.remove("remove");
 
     // 3, play the game
     const winnerName = await game.play();
