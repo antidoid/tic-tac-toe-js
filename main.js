@@ -6,6 +6,8 @@ const inpP1 = document.getElementById("p1");
 const inpP2 = document.getElementById("p2");
 
 const startBtn = document.querySelector("button");
+const p = document.createElement("p");
+
 const beginGame = async () => {
     // 2. Remove the form with button and display the gameboard
     const player1 = Player(inpP1.value || "Player X", "✘");
@@ -14,22 +16,27 @@ const beginGame = async () => {
 
     const gameboard = document.querySelector(".gameboard");
     startBtn.classList.add("hide");
+    p.classList.add("hide")
     gameboard.replaceChildren();
     game.render();
 
     // 3, play the game
     const winnerName = await game.play();
-    const p = document.createElement("p");
     if (winnerName) p.textContent = `Winner is ${winnerName}`;
-    else p.textContent = "It's a Draw";
+    else {
+        p.textContent = "It's a Draw";
+        gameboard.childNodes.forEach(box => {
+            box.classList.add("losing-boxes");
+        })
+    }
 
-    // 4. Remove the gameboard then display the winner and restart button
+    // 4. Display the restart button and winner's name
     setTimeout(() => {
-        gameboard.replaceChildren();
-        gameboard.append(p);
+        p.classList.remove("hide")
+        gameboard.after(p)
         startBtn.innerText = "Restart"
         startBtn.classList.remove("hide");
-    }, 300)
+        }, 300)
 }
 
 startBtn.addEventListener("click", beginGame);

@@ -3,7 +3,7 @@ body {
 }
 
 h1 {
-  margin-top: 10px;
+  margin: 0;
   text-align: center;
   font-size: 5rem;
   color: #D9EEE1;
@@ -31,13 +31,11 @@ form input {
 .gameboard {
   width: 400px;
   height: 50vh;
-  margin: 10vh auto;
+  margin: 5vh auto 1vh auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 5px;
-  grid-row-gap: 5px;
-  /* box-shadow: 0 15px 25px rgba(0,0,0,.6); */
+  grid-gap: 5px 5px;
 }
 
 div > div {
@@ -51,18 +49,29 @@ div > div {
   cursor: pointer;
 }
 
-div > p {
+@keyframes fade {
+    from {
+        opacity: 0;
+        filter: blur(5px);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+p {
   font-size: 3rem;
   text-align: center;
   color: #FBFBFF;
-  width: inherit;
-  height: inherit;
+  margin: 0;
+  margin-bottom: 20px;
+  animation: fade 300ms ease-out forwards;
 }
 
 .pretty-click { 
   color: #ff7d00;
   cursor: default;
-  transition: all 400ms ease-out;
+  transition: all 300ms ease-in-out;
 }
 
 .valid-hover {
@@ -90,6 +99,31 @@ div > p {
   display: visible;
 }
 
+@keyframes winners {
+    from {
+        filter: blur(5px);
+    }
+    to {
+        transform: rotate(1turn);
+        background: #ff7d00;
+        color: #FBFBFF;
+        box-shadow: 0px 0px 25px 10px teal;
+    }
+}
+
+.game-over {
+    pointer-events: none;
+}
+
+.winning-boxes {
+    animation: winners 300ms ease-in-out forwards;
+}
+
+.losing-boxes {
+    background: #999;
+    color: #000;
+}
+
 .show {
   visibility: visible;
 }
@@ -97,10 +131,6 @@ div > p {
 .hide {
   visibility: hidden;
 }
-
-/* button { */
-/*   display: hidden */
-/* } */
 
 button:hover {
   background: #ff7d00;
