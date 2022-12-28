@@ -28,9 +28,8 @@ const beginGame = async () => {
     if (winnerName) p.textContent = `Winner is ${winnerName}`;
     else {
         p.textContent = "It's a Draw";
-        gameboard.childNodes.forEach(box => {
+        for (const box of gameboard.childNodes)
             box.classList.add("losing-boxes");
-        })
     }
 
     // 4. Display the restart button and winner's name
@@ -43,6 +42,12 @@ const beginGame = async () => {
 }
 
 startBtn.addEventListener("click", beginGame);
+
+inpP1.addEventListener("keyup", evt => {
+    if (evt.key === "Enter")
+        inpP2.focus();
+})
+
 inpP2.addEventListener("keyup", evt => {
     if (evt.key === "Enter")
         startBtn.click();

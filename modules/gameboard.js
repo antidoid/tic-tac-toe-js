@@ -15,35 +15,35 @@ export default class Game {
         document.querySelector('form').classList.add("remove");
         this.gameboard.forEach((row, i) => {
             row.forEach((_, j) => {
-                const scoreDisplay = document.createElement("div");
+                const boxDisplay = document.createElement("div");
 
                 const scoreEventListener = () => {
                     row[j] = this.currPlayer.symbol;
-                    scoreDisplay.classList.add("pretty-click")
-                    scoreDisplay.classList.remove("valid-hover")
-                    scoreDisplay.textContent = row[j];
-                    scoreDisplay.removeEventListener("click", scoreEventListener);
+                    boxDisplay.classList.add("pretty-click")
+                    boxDisplay.classList.remove("valid-hover")
+                    boxDisplay.textContent = row[j];
+                    boxDisplay.removeEventListener("click", scoreEventListener);
                 }
-                scoreDisplay.addEventListener("click", scoreEventListener);
+                boxDisplay.addEventListener("click", scoreEventListener);
 
                 const isValidHover = e => {
-                    if (!scoreDisplay.textContent) {
-                        scoreDisplay.classList.toggle("valid-hover");
+                    if (!boxDisplay.textContent) {
+                        boxDisplay.classList.toggle("valid-hover");
                         return
                     }
 
-                    scoreDisplay.classList.remove("valid-hover");
+                    boxDisplay.classList.remove("valid-hover");
                     if (e.type == "mouseenter")
-                        scoreDisplay.classList.add("invalid-hover")
+                        boxDisplay.classList.add("invalid-hover")
                     else if (e.type == "mouseleave")
-                        scoreDisplay.classList.remove("invalid-hover")
+                        boxDisplay.classList.remove("invalid-hover")
                 }
-                scoreDisplay.addEventListener("mouseenter", isValidHover);
-                scoreDisplay.addEventListener("mouseleave", isValidHover);
+                boxDisplay.addEventListener("mouseenter", isValidHover);
+                boxDisplay.addEventListener("mouseleave", isValidHover);
 
-                scoreDisplay.dataset.index = `${i}${j}`;
+                boxDisplay.dataset.index = `${i}${j}`;
 
-                this.gameBoardDisplay.append(scoreDisplay);
+                this.gameBoardDisplay.append(boxDisplay);
             })
         })
     }
@@ -51,14 +51,14 @@ export default class Game {
     getWinner() {
         const hasWon = (postions) => {
             let delay = 200;
-            this.gameBoardDisplay.childNodes.forEach(score => {
-                if (postions.includes(score.dataset.index)) {
-                    setTimeout(() => score.classList.add("winning-boxes"), delay);
+            for (const box of this.gameBoardDisplay.childNodes) {
+                if (postions.includes(box.dataset.index)) {
+                    setTimeout(() => box.classList.add("winning-boxes"), delay);
                     delay *= 2;
                 }
-                else score.classList.add("losing-boxes");
-                score.classList.add("game-over");
-            })
+                else box.classList.add("losing-boxes");
+                box.classList.add("game-over");
+            }
         }
 
         for (let i = 0; i < 3; i++) {
@@ -91,7 +91,7 @@ export default class Game {
             (this.gameboard[2][0] === this.gameboard[1][1]) && 
             (this.gameboard[1][1] === this.gameboard[0][2])
         ) {
-            hasWon(['02', '11', '20'])
+            hasWon(['20', '11', '02'])
             return this.gameboard[2][0];
         }
 
@@ -100,12 +100,14 @@ export default class Game {
 
     async play() {
         const waitForClick = () => new Promise(resolve => {
-            const scoreClickEvent = () => resolve("A valid box was clicked");
-            this.gameBoardDisplay.childNodes.forEach(score => {
-                score.removeEventListener("click", scoreClickEvent);
-                if (!score.textContent)
-                    score.addEventListener("click", scoreClickEvent);
-            })
+            const scoreClickEvent = e => {
+                resolve("A valid box was clicked");
+                e.target.removeEventListener("click", scoreClickEvent);
+            }
+
+            for (const box of this.gameBoardDisplay.childNodes)
+                if (!box.textContent)
+                    box.addEventListener("click", scoreClickEvent);
         })
 
         let winnerName;
